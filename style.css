@@ -20,6 +20,9 @@ h1 {
 	display: flex;
 	justify-content: center;
 }
+
+
+
 .gameContainer {
 	display: grid;
 	grid-gap: 20px;
@@ -33,13 +36,75 @@ h1 {
 .cardsContainer {
 	display: grid;
 	grid-template-columns: repeat(6, auto);
-	grid-gap: 20px;
+	grid-gap: 10px;
 	justify-content: center;
 }
+
+
+
 .card {
+	position: relative;
 	border-radius: 10px;
-	border: 2px solid #FFC000;
+	box-shadow: inset 0px 0px 0px 1.5px #FFC000;
 	background-color: #002F93;
 	height: 155px;
 	width: 111px;
+}
+
+
+
+.cardFace {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	backface-visibility: hidden;
+	justify-content: center;
+}
+.cardFront {
+	transform: rotateX(180deg);
+}
+
+
+.cube {
+	position: absolute;
+	height: 70px;
+	top: 26%;
+	left: 23%;
+	transition: height 100ms ease-in-out, transform 100ms ease-in-out, transform 100ms ease-in-out;
+}
+.corner {
+	position: absolute;
+	height: 25px;
+	transition: height 100ms ease-in-out, width 100ms ease-in-out;
+}
+
+
+.topLeft {
+	top: 0;
+	left: 0;
+}
+.topRight {
+	top: 0;
+	right: 0;
+	transform: rotate(85deg);
+}
+.btmLeft {
+	bottom: 0;
+	left: 0;
+	transform: rotate(265deg);
+}
+.btmRight {
+	bottom: 0;
+	right: 0;
+	transform: rotate(180deg);
+}
+
+.cardBack:hover .corner {
+	height: 30px;
+}
+.cardBack:hover .cube {
+	/*height: 85px;*/
+	transform: rotate(90deg);
+	/*transform: translate(-7px, -8px);*/
 }
