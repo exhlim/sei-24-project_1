@@ -1,0 +1,45 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: sans-serif;
+	margin: 0;
+}
+h1 {
+	text-align: center;
+	font-size: 5em;
+	color: teal;
+	margin: 0 auto;
+}
+.containerBoard {
+	border-radius: 50px;
+	background-color: #00e3d0;
+	padding: 50px 0;
+	width: 70vw;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+.gameContainer {
+	display: grid;
+	grid-gap: 20px;
+}
+.gameInfoContainer {
+	font-size: 1.5em;
+	color: white;
+	display: flex;
+	justify-content: space-around;
+}
+.cardsContainer {
+	display: grid;
+	grid-template-columns: repeat(6, auto);
+	grid-gap: 20px;
+	justify-content: center;
+}
+.card {
+	border-radius: 10px;
+	border: 2px solid #FFC000;
+	background-color: #002F93;
+	height: 155px;
+	width: 111px;
+}
