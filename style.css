@@ -14,13 +14,44 @@ h1 {
 .containerBoard {
 	border-radius: 50px;
 	background-color: #00e3d0;
-	padding: 50px 0;
+	padding: 30px 0;
 	width: 70vw;
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 }
-
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+	color: white;
+}
+.overlay.visible {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	animation: grow 500ms forwards;
+	/* keep the animation and effects that the keyframes has attached to it*/
+}
+@keyframes grow {
+	from {
+		background-color: rgba(0, 0, 0, 0);
+		font-size: 0;
+	}
+	to {
+		background-color: rgb(0, 0, 0, 0.8);
+		font-size: 8em;
+	}
+}
+.reset {
+	font-size: 0.4em;
+}
 
 
 .gameContainer {
@@ -35,9 +66,10 @@ h1 {
 }
 .cardsContainer {
 	display: grid;
-	grid-template-columns: repeat(6, auto);
+	grid-template-columns: repeat(4, auto);
 	grid-gap: 10px;
 	justify-content: center;
+	perspective: 500px;
 }
 
 
@@ -45,8 +77,6 @@ h1 {
 .card {
 	position: relative;
 	border-radius: 10px;
-	box-shadow: inset 0px 0px 0px 1.5px #FFC000;
-	background-color: #002F93;
 	height: 155px;
 	width: 111px;
 }
@@ -60,10 +90,48 @@ h1 {
 	display: flex;
 	backface-visibility: hidden;
 	justify-content: center;
+	/* Flipping animation transition */
+	transition: transform 500ms ease-in-out;
+	border-radius: 10px;
+}
+.cardBack {
+	box-shadow: inset 0px 0px 0px 1.5px #FFC000;
+	background-color: #002F93;
 }
 .cardFront {
-	transform: rotateX(180deg);
+	/*cardfront if infront cause of the div placement
+	add rorateY 180 to it is backwards now and add backface-visiblity:hiddent to hide anything that has its back facing us. Now we add another class known as the ."visible" which we can alter the card visibility by changing the transform property*/
+	transform: rotateY(180deg);
+	background-color: black;
+	background-color: #f2f2f2;
+	box-shadow: inset 0px 0px 0px 1.5px #FFC000;
 }
+
+
+/* cardBack that are the child elements of those that have card and visible class*/
+.card.visible .cardBack {
+	/*Card back will rotate to disappear*/
+	transform: rotateY(-180deg);
+}
+.card.visible .cardFront {
+	/* Card front will rotate to show itself*/
+	transform: rotateY(0deg);
+}
+.card.matched .icon {
+	animation: dance 1s linear infinite 500ms;
+}
+@keyframes dance {
+	0%, 100% {
+		transform: rotate(0);
+	}
+	25% {
+		transform: rotate(-30deg);
+	}
+	75% {
+		transform: rotate(30deg);
+	}
+}
+
 
 
 .cube {
@@ -71,13 +139,22 @@ h1 {
 	height: 70px;
 	top: 26%;
 	left: 23%;
-	transition: height 100ms ease-in-out, transform 100ms ease-in-out, transform 100ms ease-in-out;
+	transition: transform 150ms ease-in-out;
+}
+.icon {
+	position: absolute;
+	height: 70px;
+	top: 27%;
+	left: 19%;
+	transform: scale(1);
+	transition: transform 150ms ease-in-out
 }
 .corner {
 	position: absolute;
 	height: 25px;
-	transition: height 100ms ease-in-out, width 100ms ease-in-out;
+	transition: height 150ms ease-in-out, width 150ms ease-in-out;
 }
+
 
 
 .topLeft {
@@ -100,11 +177,25 @@ h1 {
 	transform: rotate(180deg);
 }
 
-.cardBack:hover .corner {
+
+
+.cardFace:hover .corner{
 	height: 30px;
 }
 .cardBack:hover .cube {
-	/*height: 85px;*/
 	transform: rotate(90deg);
-	/*transform: translate(-7px, -8px);*/
+}
+.cardFront:hover .icon {
+	transform: scale(1.1);
+}
+
+@media (max-width: 780px) {
+	.cardsContainer {
+		grid-template-columns: repeat(2, auto);
+	}
+	.gameInfoContainer {
+		grid-template-columns: repeat(1, auto);
+		flex-direction: column;
+		align-items: center;
+	}
 }
