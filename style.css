@@ -183,7 +183,7 @@ h1 {
 	height: 30px;
 }
 .cardBack:hover .cube {
-	transform: rotate(90deg);
+	transform: rotate(120deg);
 }
 .cardFront:hover .icon {
 	transform: scale(1.1);
