@@ -1,20 +1,36 @@
 // Generate Cards first thing when the page loads
 var cardsContainer = document.querySelector(".cardsContainer");
-for(let i = 0; i < 15; i++) {
-    // Cloning the first entire card div
-    var cloneArr = document.querySelector(".card").cloneNode(true);
-    // Accessing the .icon class which is the image class
-    var iconClass = document.querySelector(".icon");
-    cardsContainer.setAttribute("style", "grid-template-columns: repeat(4, auto);")
-    // Change the image base on the loop condition
-    iconClass.src = "img/ai_logo/" + ((i + 1) % 8)+ ".png";
-    cardsContainer.appendChild(cloneArr);
+function generateCards(difficulty) {
+    if(difficulty == "Easy") {
+        for(let i = 0; i < 15; i++) {
+            // Cloning the first entire card div
+            var cloneArr = document.querySelector(".card").cloneNode(true);
+            // Accessing the .icon class which is the image class
+            var iconClass = document.querySelector(".icon");
+            cardsContainer.setAttribute("style", "grid-template-columns: repeat(4, auto);")
+            // Change the image base on the loop condition
+            iconClass.src = "img/ai_logo/" + ((i + 1) % 8)+ ".png";
+            cardsContainer.appendChild(cloneArr);
+        }
+    }
+    else {
+        for(let i = 0; i < 15; i++){
+            var cloneArr = document.querySelector(".card").cloneNode(true);
+            var iconClass = document.querySelector(".icon");
+            cardsContainer.setAttribute("style", "grid-template-columns: repeat(4, auto);")
+
+
+        }
+    }
 }
 
 // Game Variables
 var overlays = document.querySelectorAll(".overlay");
+var results = document.querySelectorAll(".results")
 var cards = document.querySelectorAll(".card");
 var cardFront = document.querySelector(".cardFront");
+var choices = document.querySelectorAll(".choices");
+var difficulty;
 var display;
 
 // Game class
@@ -24,11 +40,19 @@ class gameStatus {
         this.totalTime = time;
     }
     initializeNewGame(){
+        // Add event listener to the results screen
+        cards = document.querySelectorAll(".card");
+        addClickEventToCards();
+        overlays.forEach(overlay => {
+            overlay.addEventListener("click", () =>{
+                overlay.classList.remove("visible");
+            })
+        });
         // Reset Moves counter
         this.moves = document.querySelector(".moveCounter");
         this.moves.innerText = 0;
         // Reset Rating counter
-        this.ratings = document.querySelector(".ratingCounter");
+        this.ratings = document.querySelectorAll(".ratingCounter");
         this.ratingCheck(parseInt(this.moves.innerText));
         // Reset time counter
         this.timer = document.querySelector(".timeCounter");
@@ -47,8 +71,6 @@ class gameStatus {
     // CARD RELATED FUNCTIONS
     flipCard(cardJustClicked) {
         if(this.canFlipCard(cardJustClicked)){
-            // Increase move count
-            this.moves.textContent++;
             // Check the rating based on the moves
             this.ratingCheck(parseInt(this.moves.textContent));
             // Makee the card visible
@@ -56,6 +78,8 @@ class gameStatus {
 
             if(this.cardToBeChecked) {
                 this.checkForCardMatch(cardJustClicked)
+                // Increase move count
+                this.moves.textContent++;
             }
             else {
                 this.cardToBeChecked = cardJustClicked;
@@ -63,6 +87,7 @@ class gameStatus {
         }
     }
     canFlipCard(card) {
+        // return true;
         return (!this.busy && card !== this.cardToBeChecked && !this.matchedCards.includes(card));
     }
     checkForCardMatch(cardJustClicked) {
@@ -111,10 +136,9 @@ class gameStatus {
     }
     resetCards() {
         this.cardsArray.forEach(card => {
-            card.style.display = "none";
+            console.log("reseting cards")
             card.classList.remove("visible")
             card.classList.remove("matched")
-            card.style.display = "";
         //     setTimeout(() => {
         //          }, 0);
         })
@@ -123,12 +147,13 @@ class gameStatus {
 
     // RATING FUNCTIONS
     ratingCheck(currentMoves) {
-    if(currentMoves > 11 && currentMoves < 16)
-        this.ratings.textContent = "★ ★ ☆";
-    else if(currentMoves >= 16)
-        this.ratings.textContent = "★ ☆ ☆";
-    else
-        this.ratings.textContent = "★ ★ ★";
+        for(let i = 0; i < 3; i++) {
+            if(currentMoves > 11 && currentMoves < 16)
+                this.ratings[i].textContent = "★ ★ ☆";
+            else if(currentMoves >= 16)
+                this.ratings[i].textContent = "★ ☆ ☆";
+            else
+                this.ratings[i].textContent = "★ ★ ★";}
     }
 
     // TIMING FUNCTIONS
@@ -144,26 +169,38 @@ class gameStatus {
     gameOver() {
         clearInterval(this.countDownRef);
         document.getElementById("gameOver").classList.add("visible");
+        this.ratingCheck(parseInt(this.moves.textContent));
     }
     victory() {
         clearInterval(this.countDownRef);
         document.getElementById("victory").classList.add("visible");
+        this.ratingCheck(parseInt(this.moves.textContent));
     }
 }
 let newGame = new gameStatus(100, cards)
 // Add click event to all my overlays
-overlays.forEach(overlay => {
-    overlay.addEventListener("click", () => {
-        overlay.classList.remove("visible");
+// overlays.forEach(overlay => {
+//     overlay.addEventListener("click", () => {
+//         overlay.classList.remove("visible");
+//         newGame.initializeNewGame();
+//     })
+// });
+choices.forEach(choice => {
+    choice.addEventListener("click", () =>{
+        difficulty = choice.textContent;
+        generateCards(difficulty);
         newGame.initializeNewGame();
     })
-});
-cards.forEach(card => {
-    card.addEventListener("click", () => {
-        newGame.flipCard(card);
-    })
-});
-
+})
+function addClickEventToCards(){
+        cards.forEach(card => {
+            card.addEventListener("click", () => {
+                newGame.flipCard(card);
+        })
+    });
+}
+//start screen will contain 2 buttons 1 with easy and 1 with hard difficult.
+// unless they click one of the difficult they wont be able to start the game.
 
 
 

@@ -6,9 +6,15 @@
 </head>
 <body>
     <h1>Mix and Match</h1>
-    <div class="overlay visible">Click to Start!</div>
-    <div id="gameOver" class="overlay">Game Over! <span class="reset">Click here to reset.</span></div>
-    <div id="victory" class="overlay">Victory! <span class="reset">Click here to reset.</span></div>
+    <div class="overlay visible">Welcome to Mix and Match
+        <span class="reset selectDifficulty">Please select your difficulty: </span>
+        <div class="difficulty">
+            <button class="choices easy">Easy</button>
+            <button class="choices medium">Medium</button>
+        </div>
+    </div>
+    <div id="gameOver" class="overlay results">Game Over!  <span class="reset">Your rating is <span class="ratingCounter">★ ★ ★</span><br><span class="reset">Click here to reset.</span></div>
+    <div id="victory" class="overlay results">Victory! <span class="reset">Your rating is <span class="ratingCounter">★ ★ ★</span><br><span class="reset">Click here to reset.</span></div>
     <div class="containerBoard">
         <div class="gameContainer">
              <div class="gameInfoContainer">
@@ -17,7 +23,7 @@
                 <div class="gameInfo">Moves: <span class="moveCounter">0</span></div>
             </div>
             <div class="cardsContainer">
-                <div class="card visible">
+                <div class="card">
                     <div class="cardBack cardFace">
                         <img src="img/cardBack1.png" class="cube">
                         <img src="img/corner1.png" class="corner topLeft">

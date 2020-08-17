@@ -37,7 +37,7 @@ h1 {
 	flex-direction: column;
 	text-align: center;
 	animation: grow 500ms forwards;
-	/* keep the animation and effects that the keyframes has attached to it*/
+	/* forwards=>keep the animation and effects that the keyframes has attached to it*/
 }
 @keyframes grow {
 	from {
@@ -46,12 +46,24 @@ h1 {
 	}
 	to {
 		background-color: rgb(0, 0, 0, 0.8);
-		font-size: 8em;
+		font-size: 6em;
 	}
 }
 .reset {
 	font-size: 0.4em;
 }
+.difficulty {
+	font-size: 0.4em;
+}
+.selectDifficulty {
+	text-decoration:underline;
+}
+.choices {
+	background-color: teal;
+	height: 20px;
+	width: 90px;
+}
+
 
 
 .gameContainer {
@@ -183,7 +195,7 @@ h1 {
 	height: 30px;
 }
 .cardBack:hover .cube {
-	transform: rotate(120deg);
+	transform: rotate(90deg);
 }
 .cardFront:hover .icon {
 	transform: scale(1.1);
