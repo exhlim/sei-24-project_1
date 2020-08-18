@@ -1,15 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 * {
 	box-sizing: border-box;
 }
 body {
-	font-family: sans-serif;
+	font-family: "Fredoka One" sans-serif;
 	margin: 0;
+	background-color: pink;
 }
 h1 {
 	text-align: center;
 	font-size: 5em;
 	color: teal;
 	margin: 0 auto;
+	text-decoration: underline;
 }
 .containerBoard {
 	border-radius: 50px;
@@ -57,11 +60,14 @@ h1 {
 }
 .selectDifficulty {
 	text-decoration:underline;
+	font-size: 30px;
 }
 .choices {
-	background-color: teal;
-	height: 20px;
+	background-color: salmon;
+	font-size: 18px;
+	height: 25px;
 	width: 90px;
+	border-radius: 5px;
 }
 
 
@@ -187,6 +193,9 @@ h1 {
 	bottom: 0;
 	right: 0;
 	transform: rotate(180deg);
+}
+.hover {
+	font-size: 0.5em;
 }
 
 

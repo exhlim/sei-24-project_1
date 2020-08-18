@@ -4,22 +4,33 @@ function generateCards(difficulty) {
     if(difficulty == "Easy") {
         for(let i = 0; i < 15; i++) {
             // Cloning the first entire card div
-            var cloneArr = document.querySelector(".card").cloneNode(true);
+            var clone = document.querySelector(".card").cloneNode(true);
             // Accessing the .icon class which is the image class
+            cloneArr.push(clone);
             var iconClass = document.querySelector(".icon");
             cardsContainer.setAttribute("style", "grid-template-columns: repeat(4, auto);")
             // Change the image base on the loop condition
-            iconClass.src = "img/ai_logo/" + ((i + 1) % 8)+ ".png";
-            cardsContainer.appendChild(cloneArr);
+            iconClass.src = "img/ai_logo/" + ((i + 1) % 8) + ".png";
+            cardsContainer.appendChild(clone);
         }
     }
     else {
-        for(let i = 0; i < 15; i++){
-            var cloneArr = document.querySelector(".card").cloneNode(true);
+        for(let i = 0; i < 15; i++) {
+            cardsContainer.setAttribute("style", "grid-template-columns: repeat(4, auto);");
             var iconClass = document.querySelector(".icon");
-            cardsContainer.setAttribute("style", "grid-template-columns: repeat(4, auto);")
-
-
+            if(i == 0) {
+                iconClass.src = "img/medium/01.png";}
+            var clone = document.querySelector(".card").cloneNode(true);
+            cloneArr.push(clone);
+            if(i < 7){
+                iconClass.src = "img/medium/0" + ((i + 2)) + ".png";}
+            else{
+                if((i + 2) % 8 === 0)
+                    iconClass.src = "img/medium/18.png";
+                else
+                    iconClass.src = "img/medium/1" + ((i + 2) % 8) + ".png";}
+            cardsContainer.appendChild(clone);
+            console.log(cloneArr)
         }
     }
 }
@@ -30,6 +41,7 @@ var results = document.querySelectorAll(".results")
 var cards = document.querySelectorAll(".card");
 var cardFront = document.querySelector(".cardFront");
 var choices = document.querySelectorAll(".choices");
+var cloneArr = [];
 var difficulty;
 var display;
 
@@ -41,13 +53,7 @@ class gameStatus {
     }
     initializeNewGame(){
         // Add event listener to the results screen
-        cards = document.querySelectorAll(".card");
         addClickEventToCards();
-        overlays.forEach(overlay => {
-            overlay.addEventListener("click", () =>{
-                overlay.classList.remove("visible");
-            })
-        });
         // Reset Moves counter
         this.moves = document.querySelector(".moveCounter");
         this.moves.innerText = 0;
@@ -117,10 +123,9 @@ class gameStatus {
         }
     }
     recognise(card) {
-        display = card.getElementsByClassName("icon")["id"].src;
+        display = card.getElementsByClassName("icon")["id"].src
+        return difficulty == "Easy" ? display : (display.match(/[0-9]/gi)|| [])[4];
         // console.log(display);
-        // console.log((display.match(/[0-9]/gi)|| [])[3]);
-        return display;
     }
 
 
@@ -132,25 +137,22 @@ class gameStatus {
             let randomIndex = Math.floor(Math.random() * (i+1))
             this.cardsArray[randomIndex].style.order = i;
             this.cardsArray[i].style.order = randomIndex;
+            console.log("shuffled")
         }
     }
     resetCards() {
         this.cardsArray.forEach(card => {
-            console.log("reseting cards")
             card.classList.remove("visible")
             card.classList.remove("matched")
-        //     setTimeout(() => {
-        //          }, 0);
         })
     }
-
 
     // RATING FUNCTIONS
     ratingCheck(currentMoves) {
         for(let i = 0; i < 3; i++) {
-            if(currentMoves > 11 && currentMoves < 16)
+            if(currentMoves > 13 && currentMoves < 18)
                 this.ratings[i].textContent = "★ ★ ☆";
-            else if(currentMoves >= 16)
+            else if(currentMoves >= 18)
                 this.ratings[i].textContent = "★ ☆ ☆";
             else
                 this.ratings[i].textContent = "★ ★ ★";}
@@ -170,46 +172,39 @@ class gameStatus {
         clearInterval(this.countDownRef);
         document.getElementById("gameOver").classList.add("visible");
         this.ratingCheck(parseInt(this.moves.textContent));
+        setTimeout(this.removeCards, 300);
     }
     victory() {
         clearInterval(this.countDownRef);
         document.getElementById("victory").classList.add("visible");
         this.ratingCheck(parseInt(this.moves.textContent));
+        setTimeout(this.removeCards, 300);
+    }
+    removeCards() {
+        cloneArr.forEach(clone => {
+            clone.remove();
+        })
     }
 }
-let newGame = new gameStatus(100, cards)
-// Add click event to all my overlays
-// overlays.forEach(overlay => {
-//     overlay.addEventListener("click", () => {
-//         overlay.classList.remove("visible");
-//         newGame.initializeNewGame();
-//     })
-// });
 choices.forEach(choice => {
     choice.addEventListener("click", () =>{
         difficulty = choice.textContent;
         generateCards(difficulty);
+        removeOverlay();
+        cards = document.querySelectorAll(".card");
+        newGame = new gameStatus(100, cards)
         newGame.initializeNewGame();
     })
 })
-function addClickEventToCards(){
+function  addClickEventToCards() {
         cards.forEach(card => {
             card.addEventListener("click", () => {
                 newGame.flipCard(card);
-        })
-    });
+            })
+        });
+    }
+function removeOverlay() {
+    overlays.forEach(overlay => {
+        overlay.classList.remove("visible");
+    })
 }
-//start screen will contain 2 buttons 1 with easy and 1 with hard difficult.
-// unless they click one of the difficult they wont be able to start the game.
-
-
-
-
-
-
-
-
-
-
-
-//for harder difficulty

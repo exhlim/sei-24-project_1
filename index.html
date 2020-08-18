@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mix and Match</title>
+    <title>Match</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Mix and Match</h1>
-    <div class="overlay visible">Welcome to Mix and Match
-        <span class="reset selectDifficulty">Please select your difficulty: </span>
+    <h1>__Matched__</h1>
+    <div class="overlay visible">Welcome Matched
+        <span class="reset selectDifficulty">Please select your difficulty: <br><span class="hover">Hover over each button for details</span></span>
         <div class="difficulty">
-            <button class="choices easy">Easy</button>
-            <button class="choices medium">Medium</button>
+            <button class="choices easy" title="Match the cards with the same icon.">Easy</button>
+            <br>
+            <button class="choices medium" title="Match the last letter of that icon. E.g Mango and Avocado.">Medium</button>
+        </div>
+     </div>
+    <div id="gameOver" class="overlay results">Game Over!  <span class="reset">Your rating is <span class="ratingCounter">★ ★ ★</span><br><br>
+        <span class="reset selectDifficulty">Please select your difficulty: </span>
+        <div class="difficulty"><br>
+            <button class="choices easy" title="Match the cards with the same icon.">Easy</button><br><br>
+            <button class="choices medium" title="Match the last letter of that icon. E.g Mango and Avocado.">Medium</button>
         </div>
     </div>
-    <div id="gameOver" class="overlay results">Game Over!  <span class="reset">Your rating is <span class="ratingCounter">★ ★ ★</span><br><span class="reset">Click here to reset.</span></div>
-    <div id="victory" class="overlay results">Victory! <span class="reset">Your rating is <span class="ratingCounter">★ ★ ★</span><br><span class="reset">Click here to reset.</span></div>
+    <div id="victory" class="overlay results">Victory! <span class="reset">Your rating is <span class="ratingCounter">★ ★ ★</span><br>
+        <br>
+        <span class="reset selectDifficulty">Please select your difficulty: </span>
+        <div class="difficulty"><br>
+            <button class="choices easy" title="Match the cards with the same icon.">Easy</button><br><br>
+            <button class="choices medium" title="Match the last letter of that icon. E.g Mango and Avocado.">Medium</button>
+        </div>
+    </div>
     <div class="containerBoard">
         <div class="gameContainer">
              <div class="gameInfoContainer">
