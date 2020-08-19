@@ -1,11 +1,31 @@
 # Memory Game Project
 
-# Functionality
+## Table of Contents
 
-## Game Description Allow players to play a game called memory game. The game board has 16 cards, 8 pairs in total, players need to match all 8 pairs in order to win the game.
+* [Functionality](#Functionality)
+* [Screenshot](#Screenshot)
+* [Difficulty](#Difficulty)
 
-##Game contains Easy and Medium difficulty. For Easy, players have to match the a pair of the same icons. For Medium, players have to match 2 icons based on the last letter of that word.
+## Functionality
 
-## Game Rules If the player can match all pairs in less than 14 moves, the player gets a three star rating; If the player match all pairs in less than 18 moves but more than 14 moves, the player gets a two star rating; If the player takes more than 16 moves to finish the game, the player gets a one star rating;
+1. Game Description
+Welcome to Matched. The game board has 16 cards, 8 pairs in total, players need to match all 8 pairs in order to win the game.
 
-##Shortcut shift+r to play again
+2. Game Rules
+  If the player can match all pairs in less than 13 moves, the player gets a three star rating.
+  If the player match all pairs in less than 17 moves but more than 13 moves, the player gets a two star rating.
+  If the player takes more than 17 moves to finish the game, the player gets a one star rating.
+
+## Screenshot
+
+![](project1screenshot.gif)
+
+
+## Difficulty
+  For easy difficulty, players will have to match cards of the same icon.
+
+  For medium difficulty, players will have to pair icons base on the last letter of the word that represents that icon.
+  E.g, [Apple <--> Cake] and [Mango <--> Avocado].
+
+  For expert difficulty, players will have to pair the icons base on the letter that appears the most in the word that represents that icon.
+  E.g, [Cascading Style Sheets --> the letter S appears the most <-- Sunglasses], [Target --> T <-- Battery] and [Treadmill --> L <-- Volleyball].

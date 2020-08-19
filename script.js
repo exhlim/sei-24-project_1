@@ -169,6 +169,8 @@ class gameStatus {
                 this.ratings[i].textContent = "★ ★ ☆";
             else if(currentMoves >= 18)
                 this.ratings[i].textContent = "★ ☆ ☆";
+            else if(currentMoves == -1)
+                this.ratings[i].textContent = "☆ ☆ ☆";
             else
                 this.ratings[i].textContent = "★ ★ ★";}
     }
@@ -186,7 +188,7 @@ class gameStatus {
     gameOver() {
         clearInterval(this.countDownRef);
         document.getElementById("gameOver").classList.add("visible");
-        this.ratingCheck(parseInt(20));
+        this.ratingCheck(parseInt(-1));
         setTimeout(this.removeCards, 500);
     }
     victory() {
@@ -207,7 +209,7 @@ choices.forEach(choice => {
         generateCards(difficulty);
         removeOverlay();
         cards = document.querySelectorAll(".card");
-        newGame = new gameStatus(70, cards)
+        newGame = new gameStatus(100, cards)
         newGame.initializeNewGame();
     })
 })
