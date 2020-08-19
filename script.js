@@ -1,6 +1,7 @@
 // Generate Cards first thing when the page loads
 var cardsContainer = document.querySelector(".cardsContainer");
 function generateCards(difficulty) {
+    cardsContainer.setAttribute("style", "grid-template-columns: repeat(4, auto);")
     if(difficulty == "Standard") {
         for(let i = 0; i < 15; i++) {
             // Cloning the first entire card div
@@ -8,15 +9,13 @@ function generateCards(difficulty) {
             // Accessing the .icon class which is the image class
             cloneArr.push(clone);
             var iconClass = document.querySelector(".icon");
-            cardsContainer.setAttribute("style", "grid-template-columns: repeat(4, auto);")
             // Change the image base on the loop condition
             iconClass.src = "img/ai_logo/" + ((i + 1) % 8) + ".png";
             cardsContainer.appendChild(clone);
         }
     }
-    else {
+    else if(difficulty == "Medium") {
         for(let i = 0; i < 15; i++) {
-            cardsContainer.setAttribute("style", "grid-template-columns: repeat(4, auto);");
             var iconClass = document.querySelector(".icon");
             if(i == 0) {
                 iconClass.src = "img/medium/01.png";}
@@ -30,7 +29,23 @@ function generateCards(difficulty) {
                 else
                     iconClass.src = "img/medium/1" + ((i + 2) % 8) + ".png";}
             cardsContainer.appendChild(clone);
-            console.log(cloneArr)
+        }
+    }
+    else {
+        for(let i = 0; i < 15; i++) {
+            var iconClass = document.querySelector(".icon");
+            if(i == 0) {
+                iconClass.src = "img/hard/png/01.png";}
+            var clone = document.querySelector(".card").cloneNode(true);
+            cloneArr.push(clone);
+            if(i < 7){
+                iconClass.src = "img/hard/png/0" + ((i + 2)) + ".png";}
+            else{
+                if((i + 2) % 8 === 0)
+                    iconClass.src = "img/hard/png/18.png";
+                else
+                    iconClass.src = "img/hard/png/1" + ((i + 2) % 8) + ".png";}
+            cardsContainer.appendChild(clone);
         }
     }
 }
@@ -171,7 +186,7 @@ class gameStatus {
     gameOver() {
         clearInterval(this.countDownRef);
         document.getElementById("gameOver").classList.add("visible");
-        this.ratingCheck(parseInt(this.moves.textContent));
+        this.ratingCheck(parseInt(20));
         setTimeout(this.removeCards, 500);
     }
     victory() {
@@ -192,7 +207,7 @@ choices.forEach(choice => {
         generateCards(difficulty);
         removeOverlay();
         cards = document.querySelectorAll(".card");
-        newGame = new gameStatus(60, cards)
+        newGame = new gameStatus(70, cards)
         newGame.initializeNewGame();
     })
 })
@@ -209,6 +224,9 @@ function removeOverlay() {
     })
 }
 function myFunction() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
+    console.log(popup);
+    var popup = document.querySelectorAll("#myPopup");
+    popup.forEach(text => {
+            text.classList.toggle("show");
+    })
 }
