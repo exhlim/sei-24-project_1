@@ -7,26 +7,28 @@
 <body>
     <h1>__Matched__</h1>
     <div class="overlay visible">Welcome Matched
-        <span class="reset selectDifficulty">Please select your difficulty: <br><span class="hover">Hover over each button for details</span></span>
+        <span class="reset selectDifficulty">Please select your difficulty: <br><span class="popup" onclick="myFunction()">Click here for details on each difficulty
+        <div class="popuptext" id="myPopup"> <span style ="text-decoration: underline;">Standard</span> <br> <span class="mini">Match the same icons.</span> <br> <span style ="text-decoration: underline;">Medium</span> <br> <span class="mini">Remember these icons below and match the 2 icons with the same <span style ="text-decoration: underline;">last</span> letter. <br> <br><img src="img/pairDetails.png" class="instructions"></div></span>
+    </span>
         <div class="difficulty">
-            <button class="choices easy" title="Match the cards with the same icon.">Easy</button>
+            <button class="choices easy" >Standard</button>
             <br>
-            <button class="choices medium" title="Match the last letter of that icon. E.g Mango and Avocado.">Medium</button>
+            <button class="choices medium" >Medium</button>
         </div>
      </div>
     <div id="gameOver" class="overlay results">Game Over!  <span class="reset">Your rating is <span class="ratingCounter">★ ★ ★</span><br><br>
         <span class="reset selectDifficulty">Please select your difficulty: </span>
         <div class="difficulty"><br>
-            <button class="choices easy" title="Match the cards with the same icon.">Easy</button><br><br>
-            <button class="choices medium" title="Match the last letter of that icon. E.g Mango and Avocado.">Medium</button>
+            <button class="choices easy" >Standard</button><br><br>
+            <button class="choices medium">Medium</button>
         </div>
     </div>
     <div id="victory" class="overlay results">Victory! <span class="reset">Your rating is <span class="ratingCounter">★ ★ ★</span><br>
         <br>
         <span class="reset selectDifficulty">Please select your difficulty: </span>
         <div class="difficulty"><br>
-            <button class="choices easy" title="Match the cards with the same icon.">Easy</button><br><br>
-            <button class="choices medium" title="Match the last letter of that icon. E.g Mango and Avocado.">Medium</button>
+            <button class="choices easy" >Standard</button><br><br>
+            <button class="choices medium">Medium</button>
         </div>
     </div>
     <div class="containerBoard">

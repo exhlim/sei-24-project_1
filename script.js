@@ -1,7 +1,7 @@
 // Generate Cards first thing when the page loads
 var cardsContainer = document.querySelector(".cardsContainer");
 function generateCards(difficulty) {
-    if(difficulty == "Easy") {
+    if(difficulty == "Standard") {
         for(let i = 0; i < 15; i++) {
             // Cloning the first entire card div
             var clone = document.querySelector(".card").cloneNode(true);
@@ -124,7 +124,7 @@ class gameStatus {
     }
     recognise(card) {
         display = card.getElementsByClassName("icon")["id"].src
-        return difficulty == "Easy" ? display : (display.match(/[0-9]/gi)|| [])[4];
+        return difficulty == "Standard" ? display : (display.match(/[0-9]/gi)|| [])[4];
         // console.log(display);
     }
 
@@ -172,13 +172,13 @@ class gameStatus {
         clearInterval(this.countDownRef);
         document.getElementById("gameOver").classList.add("visible");
         this.ratingCheck(parseInt(this.moves.textContent));
-        setTimeout(this.removeCards, 300);
+        setTimeout(this.removeCards, 500);
     }
     victory() {
         clearInterval(this.countDownRef);
         document.getElementById("victory").classList.add("visible");
         this.ratingCheck(parseInt(this.moves.textContent));
-        setTimeout(this.removeCards, 300);
+        setTimeout(this.removeCards, 500);
     }
     removeCards() {
         cloneArr.forEach(clone => {
@@ -192,7 +192,7 @@ choices.forEach(choice => {
         generateCards(difficulty);
         removeOverlay();
         cards = document.querySelectorAll(".card");
-        newGame = new gameStatus(100, cards)
+        newGame = new gameStatus(60, cards)
         newGame.initializeNewGame();
     })
 })
@@ -207,4 +207,8 @@ function removeOverlay() {
     overlays.forEach(overlay => {
         overlay.classList.remove("visible");
     })
+}
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
 }
