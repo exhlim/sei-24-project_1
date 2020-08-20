@@ -18,14 +18,19 @@ Welcome to Matched. The game board has 16 cards, 8 pairs in total, players need 
 
 ## Screenshot
 
-![](project1screenshot.gif)
+![](img/project1screenshot.gif)
 
 
 ## Difficulty
   For easy difficulty, players will have to match cards of the same icon.
+  
 
   For medium difficulty, players will have to pair icons base on the last letter of the word that represents that icon.
-  E.g, [Apple <--> Cake] and [Mango <--> Avocado].
+  * [Apple <--> Cake]
+  * [Mango <--> Avocado].
+
 
   For expert difficulty, players will have to pair the icons base on the letter that appears the most in the word that represents that icon.
-  E.g, [Cascading Style Sheets --> the letter S appears the most <-- Sunglasses], [Target --> T <-- Battery] and [Treadmill --> L <-- Volleyball].
+  * [Cascading Style Sheets --> S <-- Sunglasses] The letter S appears the most for both words.
+  * [Target --> T <-- Battery] The letter T appears the most for both words.
+  * [Treadmill --> L <-- Volleyball] The letter L appears the most for both words.

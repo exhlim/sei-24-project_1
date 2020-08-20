@@ -139,7 +139,12 @@ class gameStatus {
     }
     recognise(card) {
         display = card.getElementsByClassName("icon")["id"].src
+        console.log(display)
         return difficulty == "Standard" ? display : (display.match(/[0-9]/gi)|| [])[4];
+        // file:///Users/eugenelim/Desktop/wdi/sei-24-project_1/img/medium/15.png
+        // [2, 4, 1, 1, 5]
+        // file:///Users/eugenelim/Desktop/wdi/sei-24-project_1/img/medium/05.png
+        // [2, 4, 1, 0, 5]
         // console.log(display);
     }
 
@@ -189,13 +194,13 @@ class gameStatus {
         clearInterval(this.countDownRef);
         document.getElementById("gameOver").classList.add("visible");
         this.ratingCheck(parseInt(-1));
-        setTimeout(this.removeCards, 500);
+        setTimeout(this.removeCards, 1000);
     }
     victory() {
         clearInterval(this.countDownRef);
         document.getElementById("victory").classList.add("visible");
         this.ratingCheck(parseInt(this.moves.textContent));
-        setTimeout(this.removeCards, 500);
+        setTimeout(this.removeCards, 1000);
     }
     removeCards() {
         cloneArr.forEach(clone => {

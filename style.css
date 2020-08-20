@@ -235,7 +235,7 @@ h1 {
 	display: grid;
 	grid-template-columns: repeat(3, auto);
   visibility: hidden;
-  width: 1000px;
+  width: 970px;
   height: 420px;
   background-color: #555;
   color: #fff;
