@@ -18,7 +18,7 @@ Welcome to Matched. The game board has 16 cards, 8 pairs in total, players need 
 
 ## Screenshot
 
-![](project1screenshot.gif)
+![](img/project1screenshot.gif)
 
 
 ## Difficulty
