@@ -33,4 +33,8 @@ Welcome to Matched. The game board has 16 cards, 8 pairs in total, players need 
   For expert difficulty, players will have to pair the icons base on the letter that appears the most in the word that represents that icon.
   * [Cascading Style Sheets --> S <-- Sunglasses] The letter S appears the most for both words.
   * [Target --> T <-- Battery] The letter T appears the most for both words.
+<<<<<<< HEAD
   * [Treadmill --> L <-- Volleyball] The letter L appears the most for both words.
+=======
+  * [Treadmill --> L <-- Volleyball] The letter L appears the most for both words.
+>>>>>>> bbb76b82d88869361e8c4546b9dde05a3e54656c
