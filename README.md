@@ -8,10 +8,10 @@
 
 ## Functionality
 
-1. Game Description
+1. Game Description:
 Welcome to Matched. The game board has 16 cards, 8 pairs in total, players need to match all 8 pairs in order to win the game.
 
-2. Game Rules
+2. Game Rules:
   If the player can match all pairs in less than 13 moves, the player gets a three star rating.
   If the player match all pairs in less than 17 moves but more than 13 moves, the player gets a two star rating.
   If the player takes more than 17 moves to finish the game, the player gets a one star rating.

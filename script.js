@@ -141,6 +141,8 @@ class gameStatus {
         display = card.getElementsByClassName("icon")["id"].src
         console.log(display)
         return difficulty == "Standard" ? display : (display.match(/[0-9]/gi)|| [])[4];
+        // returns an array of the numbers of the user path below and you take the fifth number which is at index 5 then you compare that index
+        // number. The index number is representative of the image itself.
         // file:///Users/eugenelim/Desktop/wdi/sei-24-project_1/img/medium/15.png
         // [2, 4, 1, 1, 5]
         // file:///Users/eugenelim/Desktop/wdi/sei-24-project_1/img/medium/05.png
